@@ -12,23 +12,35 @@ load_dotenv()
 ee.Initialize()
 
 st.set_page_config(layout="wide")
-st.title("🌍 AI + Satellite: Smart Spatial Query System")
+st.title("🌍 AAROH (AI-Assisted Reasoning for Orchestrated Geospatial Handling)")
 
 # --- Step 1: Inputs ---
 query = st.text_input("🗣 Ask your spatial question:", "Flood prone areas in Guwahati")
 
 locations_dict = {
-    "Guwahati": (91.7362, 26.1445),
     "Hyderabad": (78.4867, 17.3850),
     "Bengaluru": (77.5946, 12.9716),
+    "Delhi": (77.1025, 28.7041),
+    "Mumbai": (72.8777, 19.0760),
+    "Chennai": (80.2707, 13.0827),
     "Kolkata": (88.3639, 22.5726),
+    "Guwahati": (91.7362, 26.1445),
 }
 
-location = st.selectbox("📍 Select a location:", list(locations_dict.keys()))
-coords = locations_dict[location]
+# --- Step 3: Match Place from Query ---
+matched_city = None
+for city in locations_dict:
+    if city.lower() in query.lower():
+        matched_city = city
+        coords = locations_dict[city]
+        break
+
+if not matched_city:
+    st.error("❌ Could not detect a valid city in your query. Please include one of the following: Guwahati, Hyderabad, Delhi, Mumbai, Chennai, Bengaluru, or Kolkata.")
+    st.stop()
 
 # Optional buffer slider
-buffer_km = st.slider("📏 Select buffer radius (km):", 30, 300, 60)
+buffer_km = st.slider("📏 Select buffer radius (km):", 30, 160, 90)
 region = ee.Geometry.Point(coords).buffer(buffer_km * 1000)
 
 # --- Step 2: On Run ---
@@ -40,24 +52,33 @@ if st.button("Run Analysis"):
     # --- Step 3: Display Map ---
     st.subheader("🗺 Map Output")
     m = geemap.Map(center=[coords[1], coords[0]], zoom=9)
-    vis_params = {"palette": ["#FF0000"], "min": 0, "max": 1}
-    if "population" in tool_used.lower():
-        vis_params = {"palette": ["white", "red"], "min": 0, "max": 300}
-    elif "vegetation" in tool_used.lower():
+
+    # Set visualization styles based on tool
+    if "vegetation" in tool_used.lower() or "ndvi" in tool_used.lower():
         vis_params = {"palette": ["#00FF00"], "min": 0, "max": 1}
+    elif "solar" in tool_used.lower():
+        vis_params = {"palette": ["#fff5b1", "#f18f01", "#a70000"], "min": 0, "max": 8}
+    elif "land cover" in tool_used.lower():
+        vis_params = {
+            "min": 10, "max": 100,
+            "palette": ["#006400", "#00FF00", "#7FFF00", "#FFFF00", "#FF7F50", "#D2691E"]
+        }
+    elif "water" in tool_used.lower():
+        vis_params = {"palette": ["#0000FF"]}
+    else:  # fallback/flood
+        vis_params = {"palette": ["#FF0000"], "min": 0, "max": 1}
 
     m.addLayer(layer, vis_params, tool_used)
     m.to_streamlit(height=600)
 
     # Safer region check using reduceRegion
     sample = layer.reduceRegion(
-        reducer=ee.Reducer.count(),
-        geometry=layer.geometry(),
-        scale=30
+    reducer=ee.Reducer.count(),
+    geometry=layer.geometry(),
+    scale=30,
+    maxPixels=1e9,
+    bestEffort=True
     )
     count = sample.getInfo()
     if count and list(count.values())[0] == 0:
-        st.warning("⚠ No data detected in this region. Try increasing buffer or relaxing thresholds.")
-
-    st.markdown(f"🔧 Tool selected:** {tool_used}")
-    st.code(debug_log, language="text")
+        st.warning("⚠️ No data detected in this region. Try increasing buffer or relaxing thresholds.")
