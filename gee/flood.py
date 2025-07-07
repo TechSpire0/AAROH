@@ -34,7 +34,7 @@ def get_s1_water_mask(region_geometry):
 
 # 2. Solar Irradiance (NASA POWER)
 def get_solar_irradiance(region_geometry):
-    solar = ee.ImageCollection("NASA/POWER/SSE") \
+    solar = ee.ImageCollection("MODIS/061/MCD18A1") \
         .select("ALLSKY_SFC_SW_DWN") \
         .filterDate("2023-01-01", "2023-12-31") \
         .mean()

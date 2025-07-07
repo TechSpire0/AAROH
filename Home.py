@@ -40,14 +40,17 @@ if not matched_city:
     st.stop()
 
 # Optional buffer slider
-buffer_km = st.slider("📏 Select buffer radius (km):", 30, 160, 90)
+buffer_km = st.slider("📏 Select buffer radius (km):", 30, 160, 100)
 region = ee.Geometry.Point(coords).buffer(buffer_km * 1000)
 
 # --- Step 2: On Run ---
 if st.button("Run Analysis"):
-    st.subheader("🧠 LLM Agent Reasoning")
     
-    layer, tool_used, debug_log = get_agent_layer(query, coords, buffer_km)
+    layer, tool_used, response, reasoning_steps = get_agent_layer(query, coords, buffer_km, matched_city)
+
+    st.markdown("### 🧠 Step-by-step LLM Agent reasoning")
+    for i, step in enumerate(reasoning_steps, 1):
+        st.markdown(f"**{i}. {step}**")
 
     # --- Step 3: Display Map ---
     st.subheader("🗺 Map Output")
@@ -57,7 +60,7 @@ if st.button("Run Analysis"):
     if "vegetation" in tool_used.lower() or "ndvi" in tool_used.lower():
         vis_params = {"palette": ["#00FF00"], "min": 0, "max": 1}
     elif "solar" in tool_used.lower():
-        vis_params = {"palette": ["#fff5b1", "#f18f01", "#a70000"], "min": 0, "max": 8}
+        vis_params = {"palette": ["#fff5b1", "#f18f01", "#a70000"], "min": 100, "max": 300}
     elif "land cover" in tool_used.lower():
         vis_params = {
             "min": 10, "max": 100,
@@ -82,3 +85,5 @@ if st.button("Run Analysis"):
     count = sample.getInfo()
     if count and list(count.values())[0] == 0:
         st.warning("⚠️ No data detected in this region. Try increasing buffer or relaxing thresholds.")
+    
+    

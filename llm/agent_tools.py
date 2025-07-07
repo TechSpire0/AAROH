@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 import os
 import ee
 import streamlit as st
-
-from gee.flood_gee import (
+from rag.retriever import retrieve_similar_example
+from gee.flood import (
     get_flood_mask, get_ndvi_mask, get_s1_water_mask, get_peak_ndvi,
     get_solar_irradiance, get_land_cover
 )
@@ -68,21 +68,30 @@ def get_tools(region):
     ]
 
 # ✅ Run the agent
-def get_agent_layer(query, coords, buffer_km=30):
+def get_agent_layer(query, coords, buffer_km=30, matched_city="Unknown"):
     region = ee.Geometry.Point(coords).buffer(buffer_km * 1000)
     tools = get_tools(region)
 
+    example = retrieve_similar_example(query)
+    example_block = ""
+    if example is not None:
+        example_block = (
+            f"Example:\n"
+            f"Query: {example['query']}\n"
+            f"Tool: {example['tool_name']}\n"
+            f"Reasoning: {example['reasoning']}\n"
+            f"Action Input: {example['action_input']}\n\n"
+    )
+
     system_message = SystemMessage(
         content=(
-            "You are a spatial analysis assistant that uses Earth Engine tools to answer geographic queries. "
-            "Use ONLY the provided tools to answer the query.\n\n"
-            "Format:\n"
-            "Action: <tool_name>\n"
-            "Action Input: <query>\n"
-            "Final Answer: <summary>\n\n"
-            "Only use one tool that best answers the query."
-        )
+            "You are a spatial analysis assistant that uses Earth Engine tools to answer geographic queries.\n"
+            "Use ONLY the provided tools to answer the query.\n"
+            "Only use one tool that best answers the query.\n\n"
+            + example_block +
+            f"Now answer this new query:\nQuery: {query}"
     )
+)
 
     agent = initialize_agent(
         tools=tools,
@@ -103,7 +112,16 @@ def get_agent_layer(query, coords, buffer_km=30):
         response = str(e)
         tool_name = "get_flood_mask"
         layer = get_flood_mask(region)
-        return layer, "Flood-Prone Terrain (Fallback)", response
+        tool_explanation = "🛠️ The tool **get_flood_mask** was used as a fallback. It estimates flood-prone terrain using low elevation and slope."
+        reasoning_steps = [
+            f"⚠️ The AI had trouble understanding the query. As a fallback, flood-prone analysis was performed.",
+            f"📍 The analysis was centered on coordinates: {coords}.",
+            f"📏 A region with **{buffer_km} km** buffer was selected.",
+            f"{tool_explanation}",
+            f"⚙️ The method involved filtering terrain below 200m elevation and slope under 10°.",
+            f"🗺️ A red overlay highlights zones likely to flood.",
+        ]
+        return layer, "Flood-Prone Terrain (Fallback)", response, reasoning_steps
 
     # ✅ Match tool name to function for output
     tool_map = {
@@ -117,4 +135,43 @@ def get_agent_layer(query, coords, buffer_km=30):
 
     layer, tool_label = tool_map.get(tool_name, (get_flood_mask(region), "Flood-Prone Terrain (Fallback)"))
 
-    return layer, tool_label, response
+    # ✅ Generate reasoning steps
+    tool_explanation_map = {
+    "get_flood_mask": (
+        "🛠️ The tool **get_flood_mask** was used. It analyzes elevation and terrain slope to identify low-lying, flat areas below 200 meters elevation and less than 10° slope, which are prone to flooding."
+    ),
+    "get_ndvi_mask": (
+        "🛠️ The tool **get_ndvi_mask** was used. It calculates the NDVI (Normalized Difference Vegetation Index) using Sentinel-2 satellite images to highlight areas with sparse or unhealthy vegetation."
+    ),
+    "get_s1_water_mask": (
+        "🛠️ The tool **get_s1_water_mask** was used. It processes Sentinel-1 radar data to detect water surfaces, including flooded regions, by identifying low radar backscatter values."
+    ),
+    "get_peak_ndvi": (
+        "🛠️ The tool **get_peak_ndvi** was used. It analyzes time-series NDVI data over the year to determine the maximum vegetation health, useful for crop monitoring or green cover studies."
+    ),
+    "get_solar_irradiance": (
+        "🛠️ The tool **get_solar_irradiance** was used. It computes the average solar radiation received over the year using MODIS data, helping identify areas best suited for solar panels."
+    ),
+    "get_land_cover": (
+        "🛠️ The tool **get_land_cover** was used. It retrieves detailed land cover categories (e.g., forest, urban, agriculture) from ESA’s WorldCover dataset at 10m resolution."
+    )
+}
+
+    tool_explanation = tool_explanation_map.get(tool_name, "🛠️ A specific geospatial tool was used to process satellite data for this analysis.")
+
+    reasoning_steps = [
+    f"🧾 The system received your query: **\"{query}\"**.",
+    f"🔍 It detected **{matched_city}** as the city mentioned in your question.",
+    f"📌 The center of the city was used as the starting point for defining the study area.",
+    f"📏 A circular region of **{buffer_km} km** around the city was selected to perform the analysis.",
+    f"🤖 The AI agent interpreted the query and selected the geospatial tool: **{tool_name}**.",
+    tool_explanation,
+    f"📅 It pulled data from the year **2023**, covering your selected region in both space and time.",
+    f"⚙️ The system then processed this data using logic specific to the task — such as slope filtering, spectral band ratios, or threshold-based classification.",
+    f"🎨 A visualization was created using a color-coded overlay, so that different values or categories are easy to understand at a glance.",
+    f"🗺️ The map shows the analysis result overlaid on the region — for example, areas at flood risk, green cover status, water presence, or solar energy potential.",
+    f"✅ This gives you a complete spatial insight based on real satellite data, processed intelligently by the AI assistant."
+    ]
+
+
+    return layer, tool_label, response, reasoning_steps
