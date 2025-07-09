@@ -1,3 +1,5 @@
+# LLM Agent tools and utilities for geospatial reasoning.
+
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import SystemMessage
 from langchain.agents import initialize_agent, Tool
@@ -5,17 +7,17 @@ from langchain.agents.agent_types import AgentType
 from langchain_core.exceptions import OutputParserException
 from dotenv import load_dotenv
 import os
-import ee
+import ee  
 import streamlit as st
-from rag.retriever import retrieve_similar_example
+from rag.retriever import retrieve_similar_examples
 from gee.flood import (
     get_flood_mask, get_ndvi_mask, get_s1_water_mask, get_peak_ndvi,
     get_solar_irradiance, get_land_cover
 )
 
-load_dotenv()
+load_dotenv()  # Load environment variables
 
-# ✅ Set up LLM (Mistral via Together API)
+# --- Set up LLM (Mistral via Together API) ---
 llm = ChatOpenAI(
     model="mistralai/Mistral-7B-Instruct-v0.1",
     temperature=0.0,
@@ -23,47 +25,49 @@ llm = ChatOpenAI(
     openai_api_base="https://api.together.xyz/v1"
 )
 
-# ✅ Store tool used
+# --- Store last tool used for agent reasoning ---
 last_tool_used = {"name": None}
 
+# --- Utility: Wraps a function to record which tool was used ---
 def tool_wrapper(func, region, name):
     def wrapped(_):
         last_tool_used["name"] = name
         return func(region)
     return wrapped
 
-# ✅ Define GEE tools for the agent
+# --- Define GEE tools for the agent ---
 def get_tools(region):
+    # Returns a list of Tool objects for the agent, each wrapping a GEE function.
     return [
         Tool.from_function(
             name="get_flood_mask",
             func=tool_wrapper(get_flood_mask, region, "get_flood_mask"),
-            description="Use this to detect flood-prone terrain using elevation < 200m and slope < 5 degrees."
+            description="Use ONLY when the query talks about flood-prone areas due to terrain, elevation, or slope. Do NOT use for 'flood extent', 'water detection', or 'radar'. Keywords: flood-prone, elevation, slope."
         ),
         Tool.from_function(
             name="get_ndvi_mask",
             func=tool_wrapper(get_ndvi_mask, region, "get_ndvi_mask"),
-            description="Use this to find areas with low vegetation using NDVI < 0.2 from Sentinel-2."
+            description="Use for vegetation loss or green cover. Keywords: vegetation, green cover, NDVI, crop health, sparse greenery."
         ),
         Tool.from_function(
             name="get_s1_water_mask",
             func=tool_wrapper(get_s1_water_mask, region, "get_s1_water_mask"),
-            description="Use this to detect flooded areas using Sentinel-1 radar data."
+            description="Use for detecting actual water or flood extent using radar (Sentinel-1). Keywords: water extent, flood extent, radar, Sentinel-1."
         ),
         Tool.from_function(
             name="get_peak_ndvi",
             func=tool_wrapper(get_peak_ndvi, region, "get_peak_ndvi"),
-            description="Use this to get peak crop NDVI over a year from Sentinel-2."
+            description="Use this to analyze peak vegetation health or crop productivity by retrieving the highest NDVI values from Sentinel-2 imagery over a year. Keywords: peak NDVI, crop monitoring, vegetation growth, time-series."
         ),
         Tool.from_function(
             name="get_solar_irradiance",
             func=tool_wrapper(get_solar_irradiance, region, "get_solar_irradiance"),
-            description="Use this to get solar irradiance (solar energy potential) from NASA POWER."
+            description="Use for solar irradiance analysis. Keywords: solar, irradiance, sunlight, MODIS."
         ),
         Tool.from_function(
             name="get_land_cover",
             func=tool_wrapper(get_land_cover, region, "get_land_cover"),
-            description="Use this to view land cover classification from ESA WorldCover dataset."
+            description="Use for land cover classification. Keywords: land cover, ESA, WorldCover, classification."
         )
     ]
 
@@ -72,24 +76,24 @@ def get_agent_layer(query, coords, buffer_km=30, matched_city="Unknown"):
     region = ee.Geometry.Point(coords).buffer(buffer_km * 1000)
     tools = get_tools(region)
 
-    example = retrieve_similar_example(query)
+    examples = retrieve_similar_examples(query, top_n=6)
     example_block = ""
-    if example is not None:
-        example_block = (
-            f"Example:\n"
-            f"Query: {example['query']}\n"
-            f"Tool: {example['tool_name']}\n"
-            f"Reasoning: {example['reasoning']}\n"
-            f"Action Input: {example['action_input']}\n\n"
-    )
+    if examples is not None:
+        for _, row in examples.iterrows():
+            example_block += (
+        f"User: {row['query']}\n"
+        f"Thought: {row['reasoning']}\n"
+        f"Tool Chosen: {row['tool_name']}\n"
+        f"Summary: {row['summary']}\n\n"
+    ) 
 
     system_message = SystemMessage(
-        content=(
-            "You are a spatial analysis assistant that uses Earth Engine tools to answer geographic queries.\n"
-            "Use ONLY the provided tools to answer the query.\n"
-            "Only use one tool that best answers the query.\n\n"
-            + example_block +
-            f"Now answer this new query:\nQuery: {query}"
+    content=(
+        "You are a spatial analysis assistant. Use ONLY ONE of the tools provided to answer the question.\n"
+        "Do NOT guess. Only choose a tool if the query clearly matches its use.\n\n"
+        "Here are examples of queries and correct tools:\n"
+        f"{example_block}"
+        f"\nNow answer this new query:\nQuery: {query}"
     )
 )
 
@@ -108,6 +112,9 @@ def get_agent_layer(query, coords, buffer_km=30, matched_city="Unknown"):
     try:
         response = agent.run(query)
         tool_name = last_tool_used["name"]
+         # Prevent fallback misuse
+        if tool_name == "get_flood_mask" and "flood" not in query.lower():
+            raise ValueError("Flood tool was selected, but query doesn't talk about flooding. Likely wrong tool chosen.")
     except OutputParserException as e:
         response = str(e)
         tool_name = "get_flood_mask"

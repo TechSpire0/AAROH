@@ -1,401 +1,251 @@
 query,tool_name,action_input,reasoning,summary,tags
-Where is vegetation low in Mumbai,get_ndvi_mask,Mumbai,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Show peak NDVI values in Guwahati,get_peak_ndvi,Guwahati,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Map flood risk around Delhi,get_flood_mask,Delhi,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Map water accumulation using radar in Hyderabad,get_s1_water_mask,Hyderabad,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Map land use types in Bengaluru,get_land_cover,Bengaluru,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Show flood-prone zones in Chennai,get_flood_mask,Chennai,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Radar-based flood zones around Delhi,get_s1_water_mask,Delhi,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Show flood extent from Sentinel-1 for Mumbai,get_s1_water_mask,Mumbai,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Map water accumulation using radar in Chennai,get_s1_water_mask,Chennai,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Where is vegetation low in Delhi,get_ndvi_mask,Delhi,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Map land use types in Mumbai,get_land_cover,Mumbai,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Best places for solar energy in Kolkata,get_solar_irradiance,Kolkata,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Map solar potential in Kolkata,get_solar_irradiance,Kolkata,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Best places for solar energy in Hyderabad,get_solar_irradiance,Hyderabad,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Map flood risk around Mumbai,get_flood_mask,Mumbai,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Map land use types in Guwahati,get_land_cover,Guwahati,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Show flood extent from Sentinel-1 for Kolkata,get_s1_water_mask,Kolkata,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Where is vegetation low in Delhi,get_ndvi_mask,Delhi,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Map maximum crop NDVI in Guwahati,get_peak_ndvi,Guwahati,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Find dry zones in Bengaluru with low NDVI,get_ndvi_mask,Bengaluru,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Map water accumulation using radar in Bengaluru,get_s1_water_mask,Bengaluru,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Map sparse vegetation in Delhi,get_ndvi_mask,Delhi,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Map maximum crop NDVI in Bengaluru,get_peak_ndvi,Bengaluru,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Map water accumulation using radar in Mumbai,get_s1_water_mask,Mumbai,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Map maximum crop NDVI in Mumbai,get_peak_ndvi,Mumbai,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Show ESA classification for Delhi,get_land_cover,Delhi,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Show peak NDVI values in Hyderabad,get_peak_ndvi,Hyderabad,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Which areas in Hyderabad are likely to flood?,get_flood_mask,Hyderabad,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Map flood risk around Chennai,get_flood_mask,Chennai,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Map land use types in Guwahati,get_land_cover,Guwahati,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Where was vegetation highest in Chennai this year?,get_peak_ndvi,Chennai,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Map solar potential in Kolkata,get_solar_irradiance,Kolkata,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Radar-based flood zones around Bengaluru,get_s1_water_mask,Bengaluru,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Map sparse vegetation in Mumbai,get_ndvi_mask,Mumbai,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Best places for solar energy in Chennai,get_solar_irradiance,Chennai,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Show flood-prone zones in Mumbai,get_flood_mask,Mumbai,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Map sparse vegetation in Hyderabad,get_ndvi_mask,Hyderabad,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Where was vegetation highest in Guwahati this year?,get_peak_ndvi,Guwahati,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Show peak NDVI values in Bengaluru,get_peak_ndvi,Bengaluru,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-What is the land cover in Hyderabad,get_land_cover,Hyderabad,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Radar-based flood zones around Chennai,get_s1_water_mask,Chennai,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Map solar potential in Bengaluru,get_solar_irradiance,Bengaluru,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Show ESA classification for Hyderabad,get_land_cover,Hyderabad,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Best places for solar energy in Chennai,get_solar_irradiance,Chennai,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Map water accumulation using radar in Guwahati,get_s1_water_mask,Guwahati,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Show irradiance levels for solar in Guwahati,get_solar_irradiance,Guwahati,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Map water accumulation using radar in Delhi,get_s1_water_mask,Delhi,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Map maximum crop NDVI in Hyderabad,get_peak_ndvi,Hyderabad,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Show flood-prone zones in Kolkata,get_flood_mask,Kolkata,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Map water accumulation using radar in Chennai,get_s1_water_mask,Chennai,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Show peak NDVI values in Bengaluru,get_peak_ndvi,Bengaluru,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Map maximum crop NDVI in Bengaluru,get_peak_ndvi,Bengaluru,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Where was vegetation highest in Mumbai this year?,get_peak_ndvi,Mumbai,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Where was vegetation highest in Mumbai this year?,get_peak_ndvi,Mumbai,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Best places for solar energy in Kolkata,get_solar_irradiance,Kolkata,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Map sparse vegetation in Guwahati,get_ndvi_mask,Guwahati,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Map water accumulation using radar in Hyderabad,get_s1_water_mask,Hyderabad,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Show ESA classification for Mumbai,get_land_cover,Mumbai,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Where was vegetation highest in Kolkata this year?,get_peak_ndvi,Kolkata,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Map maximum crop NDVI in Guwahati,get_peak_ndvi,Guwahati,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Show irradiance levels for solar in Bengaluru,get_solar_irradiance,Bengaluru,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Show peak NDVI values in Chennai,get_peak_ndvi,Chennai,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Which areas in Hyderabad are likely to flood?,get_flood_mask,Hyderabad,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Show flood extent from Sentinel-1 for Kolkata,get_s1_water_mask,Kolkata,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Map maximum crop NDVI in Chennai,get_peak_ndvi,Chennai,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Map solar potential in Delhi,get_solar_irradiance,Delhi,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Where is vegetation low in Delhi,get_ndvi_mask,Delhi,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Radar-based flood zones around Mumbai,get_s1_water_mask,Mumbai,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Best places for solar energy in Chennai,get_solar_irradiance,Chennai,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Radar-based flood zones around Chennai,get_s1_water_mask,Chennai,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Map maximum crop NDVI in Chennai,get_peak_ndvi,Chennai,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Show ESA classification for Delhi,get_land_cover,Delhi,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Find dry zones in Chennai with low NDVI,get_ndvi_mask,Chennai,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Show irradiance levels for solar in Delhi,get_solar_irradiance,Delhi,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Map solar potential in Chennai,get_solar_irradiance,Chennai,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Show ESA classification for Chennai,get_land_cover,Chennai,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Map water accumulation using radar in Kolkata,get_s1_water_mask,Kolkata,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Find dry zones in Delhi with low NDVI,get_ndvi_mask,Delhi,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Map sparse vegetation in Guwahati,get_ndvi_mask,Guwahati,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Which areas in Delhi are likely to flood?,get_flood_mask,Delhi,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Where was vegetation highest in Bengaluru this year?,get_peak_ndvi,Bengaluru,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Map sparse vegetation in Mumbai,get_ndvi_mask,Mumbai,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Show flood extent from Sentinel-1 for Hyderabad,get_s1_water_mask,Hyderabad,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Map flood risk around Hyderabad,get_flood_mask,Hyderabad,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Which areas in Delhi are likely to flood?,get_flood_mask,Delhi,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-What is the land cover in Hyderabad,get_land_cover,Hyderabad,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Which areas in Hyderabad are likely to flood?,get_flood_mask,Hyderabad,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Map sparse vegetation in Hyderabad,get_ndvi_mask,Hyderabad,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Where is vegetation low in Guwahati,get_ndvi_mask,Guwahati,"1. Load Sentinel-2 imagery.
-2. Compute NDVI using B8 and B4.
-3. Threshold NDVI < 0.2 for sparse vegetation.
-4. Mask and clip to region.",Shows regions with low vegetation index from Sentinel-2 NDVI.,"vegetation,ndvi"
-Where was vegetation highest in Mumbai this year?,get_peak_ndvi,Mumbai,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Show irradiance levels for solar in Kolkata,get_solar_irradiance,Kolkata,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
-Radar-based flood zones around Bengaluru,get_s1_water_mask,Bengaluru,"1. Load Sentinel-1 VV polarization.
-2. Filter for radar backscatter below -15 dB.
-3. Detect potential flooded water zones.
-4. Mask and clip to region.",Highlights flooded areas detected by radar backscatter.,"flood,water,radar"
-Show ESA classification for Delhi,get_land_cover,Delhi,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Map maximum crop NDVI in Guwahati,get_peak_ndvi,Guwahati,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Which areas in Hyderabad are likely to flood?,get_flood_mask,Hyderabad,"1. Identify low elevation areas (DEM < 200m).
-2. Calculate terrain slope (<10 degrees).
-3. Combine both to find flood-prone zones.
-4. Clip to region.",Maps terrain-based flood risk using elevation and slope.,flood
-Show ESA classification for Guwahati,get_land_cover,Guwahati,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Where was vegetation highest in Hyderabad this year?,get_peak_ndvi,Hyderabad,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Map land use types in Guwahati,get_land_cover,Guwahati,"1. Access ESA WorldCover 2020.
-2. Extract land classification.
-3. Visualize land use types.
-4. Clip to region.",Displays ESA's 10m land cover classification for the region.,"land,cover,use,classification"
-Where was vegetation highest in Kolkata this year?,get_peak_ndvi,Kolkata,"1. Load Sentinel-2 time series.
-2. Compute NDVI for all images.
-3. Get pixel-wise max NDVI.
-4. Clip to region.",Shows peak vegetation activity from NDVI time series.,"vegetation,crop,ndvi"
-Show irradiance levels for solar in Chennai,get_solar_irradiance,Chennai,"1. Access NASA POWER dataset.
-2. Extract surface solar irradiance.
-3. Average over 2023.
-4. Clip to region.",Maps solar potential using NASA POWER global data.,"solar,energy,power"
+Map flood extent using Sentinel-1 radar in Hyderabad.,get_s1_water_mask,Hyderabad,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Map highest crop cover within Bengaluru.,get_peak_ndvi,Bengaluru,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Map terrain-based flood risk in Delhi.,get_flood_mask,Delhi,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Display radar-detected water zones in Guwahati.,get_s1_water_mask,Guwahati,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Where can solar energy be best harvested within Mumbai?,get_solar_irradiance,Mumbai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Detect vegetation-poor regions around Mumbai.,get_ndvi_mask,Mumbai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Display land usage map around Hyderabad.,get_land_cover,Hyderabad,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Where is water accumulation detected by radar in Delhi?,get_s1_water_mask,Delhi,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Which zones across Chennai are flood-prone?,get_flood_mask,Chennai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Find top solar energy spots across Guwahati.,get_solar_irradiance,Guwahati,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Predict flood zones within Mumbai.,get_flood_mask,Mumbai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Which zones across Guwahati are flood-prone?,get_flood_mask,Guwahati,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Show radar-based flooded zones across Delhi.,get_s1_water_mask,Delhi,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Show flood danger areas within Delhi.,get_flood_mask,Delhi,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Display land usage map in Delhi.,get_land_cover,Delhi,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Map optimal solar regions around Delhi.,get_solar_irradiance,Delhi,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Find low NDVI zones in Kolkata.,get_ndvi_mask,Kolkata,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Find top solar energy spots in Kolkata.,get_solar_irradiance,Kolkata,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Find top solar energy spots within Chennai.,get_solar_irradiance,Chennai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Find top solar energy spots across Chennai.,get_solar_irradiance,Chennai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Map terrain-based flood risk in Chennai.,get_flood_mask,Chennai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Find top solar energy spots within Delhi.,get_solar_irradiance,Delhi,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Where are different land types around Chennai?,get_land_cover,Chennai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Map solar irradiance potential across Chennai.,get_solar_irradiance,Chennai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Show land classification across Delhi.,get_land_cover,Delhi,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Where can solar energy be best harvested across Guwahati?,get_solar_irradiance,Guwahati,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Display radar-detected water zones in Hyderabad.,get_s1_water_mask,Hyderabad,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Find low NDVI zones within Hyderabad.,get_ndvi_mask,Hyderabad,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Map optimal solar regions around Delhi.,get_solar_irradiance,Delhi,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Which places showed peak NDVI across Bengaluru?,get_peak_ndvi,Bengaluru,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Map sparse greenery across Kolkata.,get_ndvi_mask,Kolkata,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Map optimal solar regions in Kolkata.,get_solar_irradiance,Kolkata,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Which places showed peak NDVI in Guwahati?,get_peak_ndvi,Guwahati,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Which zones within Bengaluru are flood-prone?,get_flood_mask,Bengaluru,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Display peak greenness within Guwahati.,get_peak_ndvi,Guwahati,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Where can solar energy be best harvested around Hyderabad?,get_solar_irradiance,Hyderabad,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Map optimal solar regions across Hyderabad.,get_solar_irradiance,Hyderabad,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Where is water accumulation detected by radar around Bengaluru?,get_s1_water_mask,Bengaluru,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Map highest crop cover around Kolkata.,get_peak_ndvi,Kolkata,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Which places showed peak NDVI around Delhi?,get_peak_ndvi,Delhi,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Where are different land types around Bengaluru?,get_land_cover,Bengaluru,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Where are different land types within Guwahati?,get_land_cover,Guwahati,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Find low NDVI zones in Mumbai.,get_ndvi_mask,Mumbai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Detect inundation from radar backscatter around Mumbai.,get_s1_water_mask,Mumbai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Show radar-based flooded zones across Guwahati.,get_s1_water_mask,Guwahati,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Map terrain-based flood risk within Chennai.,get_flood_mask,Chennai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Which zones around Hyderabad are flood-prone?,get_flood_mask,Hyderabad,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Display peak greenness in Bengaluru.,get_peak_ndvi,Bengaluru,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Display land usage map across Delhi.,get_land_cover,Delhi,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Map ESA land use types across Hyderabad.,get_land_cover,Hyderabad,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Find top solar energy spots in Chennai.,get_solar_irradiance,Chennai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Which places showed peak NDVI in Chennai?,get_peak_ndvi,Chennai,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Map terrain-based flood risk within Bengaluru.,get_flood_mask,Bengaluru,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Where is water accumulation detected by radar around Kolkata?,get_s1_water_mask,Kolkata,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Map flood extent using Sentinel-1 radar across Delhi.,get_s1_water_mask,Delhi,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Show flood danger areas around Mumbai.,get_flood_mask,Mumbai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Display land usage map within Bengaluru.,get_land_cover,Bengaluru,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Visualize land cover around Bengaluru.,get_land_cover,Bengaluru,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Show radar-based flooded zones across Hyderabad.,get_s1_water_mask,Hyderabad,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Map optimal solar regions across Guwahati.,get_solar_irradiance,Guwahati,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Predict flood zones across Guwahati.,get_flood_mask,Guwahati,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Find low NDVI zones around Chennai.,get_ndvi_mask,Chennai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Show land classification around Delhi.,get_land_cover,Delhi,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Display land usage map around Bengaluru.,get_land_cover,Bengaluru,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Map highest crop cover across Kolkata.,get_peak_ndvi,Kolkata,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Show flood danger areas in Guwahati.,get_flood_mask,Guwahati,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Map ESA land use types across Guwahati.,get_land_cover,Guwahati,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Map optimal solar regions around Hyderabad.,get_solar_irradiance,Hyderabad,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Visualize land cover around Bengaluru.,get_land_cover,Bengaluru,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Show flood danger areas within Hyderabad.,get_flood_mask,Hyderabad,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Map sparse greenery around Chennai.,get_ndvi_mask,Chennai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Which places showed peak NDVI within Bengaluru?,get_peak_ndvi,Bengaluru,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Map solar irradiance potential within Guwahati.,get_solar_irradiance,Guwahati,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Show flood danger areas around Bengaluru.,get_flood_mask,Bengaluru,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Detect vegetation-poor regions in Hyderabad.,get_ndvi_mask,Hyderabad,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Where is there a flood hazard within Kolkata?,get_flood_mask,Kolkata,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Show land classification in Delhi.,get_land_cover,Delhi,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Where can solar energy be best harvested around Bengaluru?,get_solar_irradiance,Bengaluru,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Where is there a flood hazard within Delhi?,get_flood_mask,Delhi,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Detect vegetation-poor regions within Delhi.,get_ndvi_mask,Delhi,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Show flood danger areas around Mumbai.,get_flood_mask,Mumbai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Detect vegetation-poor regions in Mumbai.,get_ndvi_mask,Mumbai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Map highest crop cover in Kolkata.,get_peak_ndvi,Kolkata,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Which areas show low vegetation index around Hyderabad?,get_ndvi_mask,Hyderabad,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Map ESA land use types around Delhi.,get_land_cover,Delhi,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Map flood extent using Sentinel-1 radar across Guwahati.,get_s1_water_mask,Guwahati,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Detect inundation from radar backscatter across Kolkata.,get_s1_water_mask,Kolkata,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Which areas show low vegetation index within Guwahati?,get_ndvi_mask,Guwahati,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Display peak greenness around Bengaluru.,get_peak_ndvi,Bengaluru,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Visualize land cover within Chennai.,get_land_cover,Chennai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Which zones around Chennai are flood-prone?,get_flood_mask,Chennai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Map highest crop cover across Kolkata.,get_peak_ndvi,Kolkata,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Show land classification around Bengaluru.,get_land_cover,Bengaluru,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Which zones around Delhi are flood-prone?,get_flood_mask,Delhi,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Where is water accumulation detected by radar within Chennai?,get_s1_water_mask,Chennai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Where is there a flood hazard in Hyderabad?,get_flood_mask,Hyderabad,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Where is there a flood hazard around Hyderabad?,get_flood_mask,Hyderabad,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Map terrain-based flood risk across Chennai.,get_flood_mask,Chennai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Map optimal solar regions within Guwahati.,get_solar_irradiance,Guwahati,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Detect vegetation-poor regions within Hyderabad.,get_ndvi_mask,Hyderabad,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Where was vegetation highest within Delhi this year?,get_peak_ndvi,Delhi,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Show land classification within Bengaluru.,get_land_cover,Bengaluru,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Display radar-detected water zones across Chennai.,get_s1_water_mask,Chennai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Find top solar energy spots around Delhi.,get_solar_irradiance,Delhi,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Map highest crop cover across Bengaluru.,get_peak_ndvi,Bengaluru,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Map highest crop cover within Hyderabad.,get_peak_ndvi,Hyderabad,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Find low NDVI zones within Bengaluru.,get_ndvi_mask,Bengaluru,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Show high solar zones within Mumbai.,get_solar_irradiance,Mumbai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Detect inundation from radar backscatter across Bengaluru.,get_s1_water_mask,Bengaluru,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Show high solar zones across Kolkata.,get_solar_irradiance,Kolkata,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Find low NDVI zones across Kolkata.,get_ndvi_mask,Kolkata,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Map solar irradiance potential around Chennai.,get_solar_irradiance,Chennai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Where are different land types around Chennai?,get_land_cover,Chennai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Where was vegetation highest in Guwahati this year?,get_peak_ndvi,Guwahati,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Where can solar energy be best harvested across Chennai?,get_solar_irradiance,Chennai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Map terrain-based flood risk across Delhi.,get_flood_mask,Delhi,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Display radar-detected water zones around Chennai.,get_s1_water_mask,Chennai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Which zones within Bengaluru are flood-prone?,get_flood_mask,Bengaluru,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Show top NDVI areas in Bengaluru.,get_peak_ndvi,Bengaluru,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Map optimal solar regions within Guwahati.,get_solar_irradiance,Guwahati,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Map sparse greenery in Chennai.,get_ndvi_mask,Chennai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Display peak greenness within Delhi.,get_peak_ndvi,Delhi,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Detect vegetation-poor regions in Chennai.,get_ndvi_mask,Chennai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Map optimal solar regions in Delhi.,get_solar_irradiance,Delhi,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Where is water accumulation detected by radar around Delhi?,get_s1_water_mask,Delhi,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Find top solar energy spots in Delhi.,get_solar_irradiance,Delhi,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Where is water accumulation detected by radar across Chennai?,get_s1_water_mask,Chennai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Where is water accumulation detected by radar in Guwahati?,get_s1_water_mask,Guwahati,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Where is there a flood hazard within Bengaluru?,get_flood_mask,Bengaluru,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Where are different land types within Chennai?,get_land_cover,Chennai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Display peak greenness within Kolkata.,get_peak_ndvi,Kolkata,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Map solar irradiance potential across Kolkata.,get_solar_irradiance,Kolkata,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Map highest crop cover around Guwahati.,get_peak_ndvi,Guwahati,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Display radar-detected water zones within Guwahati.,get_s1_water_mask,Guwahati,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Which zones within Delhi are flood-prone?,get_flood_mask,Delhi,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Predict flood zones within Bengaluru.,get_flood_mask,Bengaluru,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Detect inundation from radar backscatter within Guwahati.,get_s1_water_mask,Guwahati,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Map ESA land use types across Guwahati.,get_land_cover,Guwahati,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Where can solar energy be best harvested within Guwahati?,get_solar_irradiance,Guwahati,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Which places showed peak NDVI around Delhi?,get_peak_ndvi,Delhi,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Which areas show low vegetation index within Bengaluru?,get_ndvi_mask,Bengaluru,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Where is vegetation sparse in Mumbai?,get_ndvi_mask,Mumbai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Find top solar energy spots across Hyderabad.,get_solar_irradiance,Hyderabad,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Detect inundation from radar backscatter in Chennai.,get_s1_water_mask,Chennai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Where was vegetation highest around Guwahati this year?,get_peak_ndvi,Guwahati,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Visualize land cover within Guwahati.,get_land_cover,Guwahati,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Map sparse greenery across Guwahati.,get_ndvi_mask,Guwahati,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Find top solar energy spots within Chennai.,get_solar_irradiance,Chennai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Display land usage map in Mumbai.,get_land_cover,Mumbai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Map flood extent using Sentinel-1 radar across Mumbai.,get_s1_water_mask,Mumbai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Find low NDVI zones in Chennai.,get_ndvi_mask,Chennai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Detect vegetation-poor regions around Hyderabad.,get_ndvi_mask,Hyderabad,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Where is there a flood hazard across Hyderabad?,get_flood_mask,Hyderabad,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Detect inundation from radar backscatter in Hyderabad.,get_s1_water_mask,Hyderabad,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Which areas show low vegetation index around Guwahati?,get_ndvi_mask,Guwahati,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Detect vegetation-poor regions within Hyderabad.,get_ndvi_mask,Hyderabad,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Show top NDVI areas around Guwahati.,get_peak_ndvi,Guwahati,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Where is water accumulation detected by radar within Mumbai?,get_s1_water_mask,Mumbai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Find low NDVI zones around Delhi.,get_ndvi_mask,Delhi,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Find top solar energy spots in Hyderabad.,get_solar_irradiance,Hyderabad,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Map flood extent using Sentinel-1 radar across Kolkata.,get_s1_water_mask,Kolkata,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Map optimal solar regions across Hyderabad.,get_solar_irradiance,Hyderabad,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Where is water accumulation detected by radar within Guwahati?,get_s1_water_mask,Guwahati,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Which areas show low vegetation index across Guwahati?,get_ndvi_mask,Guwahati,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Visualize land cover in Delhi.,get_land_cover,Delhi,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Which places showed peak NDVI around Bengaluru?,get_peak_ndvi,Bengaluru,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Display peak greenness around Chennai.,get_peak_ndvi,Chennai,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Map highest crop cover across Bengaluru.,get_peak_ndvi,Bengaluru,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Where can solar energy be best harvested around Bengaluru?,get_solar_irradiance,Bengaluru,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Show land classification in Bengaluru.,get_land_cover,Bengaluru,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Find low NDVI zones within Hyderabad.,get_ndvi_mask,Hyderabad,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Detect inundation from radar backscatter within Kolkata.,get_s1_water_mask,Kolkata,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Find low NDVI zones across Bengaluru.,get_ndvi_mask,Bengaluru,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Where was vegetation highest within Guwahati this year?,get_peak_ndvi,Guwahati,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Where can solar energy be best harvested in Bengaluru?,get_solar_irradiance,Bengaluru,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Find top solar energy spots in Chennai.,get_solar_irradiance,Chennai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Find top solar energy spots within Chennai.,get_solar_irradiance,Chennai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Show high solar zones within Guwahati.,get_solar_irradiance,Guwahati,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Where is vegetation sparse across Chennai?,get_ndvi_mask,Chennai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Show top NDVI areas around Mumbai.,get_peak_ndvi,Mumbai,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Where is there a flood hazard across Chennai?,get_flood_mask,Chennai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Find low NDVI zones in Guwahati.,get_ndvi_mask,Guwahati,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Show flood danger areas in Hyderabad.,get_flood_mask,Hyderabad,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Map solar irradiance potential within Kolkata.,get_solar_irradiance,Kolkata,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Find top solar energy spots within Hyderabad.,get_solar_irradiance,Hyderabad,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Show flood danger areas across Guwahati.,get_flood_mask,Guwahati,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Map sparse greenery within Kolkata.,get_ndvi_mask,Kolkata,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Which places showed peak NDVI within Mumbai?,get_peak_ndvi,Mumbai,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Map terrain-based flood risk across Delhi.,get_flood_mask,Delhi,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Where is there a flood hazard within Mumbai?,get_flood_mask,Mumbai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Where is water accumulation detected by radar around Chennai?,get_s1_water_mask,Chennai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Map sparse greenery around Guwahati.,get_ndvi_mask,Guwahati,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Where is vegetation sparse within Bengaluru?,get_ndvi_mask,Bengaluru,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Detect vegetation-poor regions within Delhi.,get_ndvi_mask,Delhi,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Show flood danger areas within Kolkata.,get_flood_mask,Kolkata,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Detect vegetation-poor regions in Kolkata.,get_ndvi_mask,Kolkata,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Where is vegetation sparse across Chennai?,get_ndvi_mask,Chennai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Where is there a flood hazard around Hyderabad?,get_flood_mask,Hyderabad,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Predict flood zones around Delhi.,get_flood_mask,Delhi,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Find top solar energy spots across Kolkata.,get_solar_irradiance,Kolkata,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Map solar irradiance potential around Guwahati.,get_solar_irradiance,Guwahati,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Show top NDVI areas in Delhi.,get_peak_ndvi,Delhi,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Show high solar zones across Delhi.,get_solar_irradiance,Delhi,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Which places showed peak NDVI around Kolkata?,get_peak_ndvi,Kolkata,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Where are different land types across Mumbai?,get_land_cover,Mumbai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Display land usage map within Delhi.,get_land_cover,Delhi,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Display radar-detected water zones across Kolkata.,get_s1_water_mask,Kolkata,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Where are different land types around Chennai?,get_land_cover,Chennai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Where is water accumulation detected by radar in Hyderabad?,get_s1_water_mask,Hyderabad,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Where was vegetation highest across Bengaluru this year?,get_peak_ndvi,Bengaluru,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Show high solar zones across Mumbai.,get_solar_irradiance,Mumbai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Map ESA land use types in Chennai.,get_land_cover,Chennai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Detect inundation from radar backscatter in Hyderabad.,get_s1_water_mask,Hyderabad,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Display land usage map across Mumbai.,get_land_cover,Mumbai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Map solar irradiance potential in Hyderabad.,get_solar_irradiance,Hyderabad,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Which areas show low vegetation index across Kolkata?,get_ndvi_mask,Kolkata,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Show flood danger areas within Mumbai.,get_flood_mask,Mumbai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Map sparse greenery around Guwahati.,get_ndvi_mask,Guwahati,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Show land classification within Mumbai.,get_land_cover,Mumbai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Show radar-based flooded zones around Kolkata.,get_s1_water_mask,Kolkata,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Detect inundation from radar backscatter around Guwahati.,get_s1_water_mask,Guwahati,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Map terrain-based flood risk within Chennai.,get_flood_mask,Chennai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Detect inundation from radar backscatter within Chennai.,get_s1_water_mask,Chennai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Detect vegetation-poor regions in Hyderabad.,get_ndvi_mask,Hyderabad,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Show flood danger areas across Mumbai.,get_flood_mask,Mumbai,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Map highest crop cover within Kolkata.,get_peak_ndvi,Kolkata,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Show radar-based flooded zones around Mumbai.,get_s1_water_mask,Mumbai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Where are different land types around Hyderabad?,get_land_cover,Hyderabad,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Where was vegetation highest in Delhi this year?,get_peak_ndvi,Delhi,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Map terrain-based flood risk within Guwahati.,get_flood_mask,Guwahati,1. Analyze DEM (<200m). 2. Compute slope (<10°). 3. Combine both. 4. Clip to area.,Terrain-based flood risk zones.,flood
+Where is water accumulation detected by radar around Bengaluru?,get_s1_water_mask,Bengaluru,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Visualize land cover in Kolkata.,get_land_cover,Kolkata,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Map flood extent using Sentinel-1 radar across Chennai.,get_s1_water_mask,Chennai,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Visualize land cover across Bengaluru.,get_land_cover,Bengaluru,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Visualize land cover across Mumbai.,get_land_cover,Mumbai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Which areas show low vegetation index across Chennai?,get_ndvi_mask,Chennai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Where is vegetation sparse within Guwahati?,get_ndvi_mask,Guwahati,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Where is vegetation sparse across Mumbai?,get_ndvi_mask,Mumbai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Display land usage map in Mumbai.,get_land_cover,Mumbai,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Map highest crop cover within Mumbai.,get_peak_ndvi,Mumbai,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Visualize land cover within Delhi.,get_land_cover,Delhi,1. Access ESA WorldCover. 2. Extract land classification. 3. Visualize. 4. Clip to region.,Maps land use based on ESA classification.,"land,cover,use,classification"
+Find low NDVI zones within Bengaluru.,get_ndvi_mask,Bengaluru,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
+Show top NDVI areas around Bengaluru.,get_peak_ndvi,Bengaluru,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Display peak greenness in Hyderabad.,get_peak_ndvi,Hyderabad,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Show high solar zones within Hyderabad.,get_solar_irradiance,Hyderabad,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Display radar-detected water zones across Guwahati.,get_s1_water_mask,Guwahati,1. Use Sentinel-1 VV. 2. Filter backscatter < -15 dB. 3. Detect water. 4. Clip to region.,Radar-based detection of water/flooding.,"flood,water,radar"
+Which places showed peak NDVI in Chennai?,get_peak_ndvi,Chennai,1. Load Sentinel-2 time series. 2. Compute NDVI. 3. Max pixel-wise NDVI. 4. Clip to region.,Shows peak vegetation from NDVI time series.,"vegetation,crop,ndvi"
+Find top solar energy spots across Mumbai.,get_solar_irradiance,Mumbai,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Where can solar energy be best harvested across Delhi?,get_solar_irradiance,Delhi,1. Load NASA POWER data. 2. Compute 2023 average irradiance. 3. Clip to city.,Maps regions with high solar irradiance.,"solar,energy,power"
+Map sparse greenery around Mumbai.,get_ndvi_mask,Mumbai,1. Use Sentinel-2 imagery. 2. Compute NDVI using B8 & B4. 3. Threshold NDVI < 0.2. 4. Clip to region.,Identifies low vegetation areas using NDVI.,"vegetation,ndvi"
