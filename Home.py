@@ -13,7 +13,7 @@ ee.Initialize()  # Initialize Earth Engine
 # --- Streamlit UI setup ---
 st.set_page_config(layout="wide")
 st.title("🌍 AAROH (AI-Assisted Reasoning for Orchestrated Geospatial Handling)")
-st.markdown("###### This is a demo of the application")
+st.markdown("##### This is a demo of the application")
 
 # --- Step 1: User Input ---
 query = st.text_input("🗣 Ask your spatial question:", "Flood prone areas in Guwahati")
